@@ -1,0 +1,2 @@
+moma_collection. 2csvs  https://www.kaggle.com/datasets/momanyc/museum-collection?resource=download
+tate_collection. 1csv   https://www.kaggle.com/datasets/rtatman/the-tate-collection
