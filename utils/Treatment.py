@@ -1,7 +1,6 @@
 from os import listdir
 from os.path import isfile, join
 import random
-from PIL import Image
 import pandas as pd
 import numpy as np
 import re
