@@ -6,7 +6,7 @@ class ArtistTreat:
         self.path = "sources/moma_collection/artists.csv"
 
     def read(self):
-        return pd.read_csv(self.path, sep=",", header=True)
+        return pd.read_csv(self.path, sep=",")
 
 
 class ArtworksTreat:

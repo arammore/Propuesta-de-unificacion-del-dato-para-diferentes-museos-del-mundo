@@ -1,10 +1,10 @@
-from data_treatment import RijksmuseumTreat, MomaTreat
+from data_treatment import MomaTreat
 from utils.Treatment import GetInfoArtObjects
 import pandas as pd
 
 if __name__ == '__main__':
-    moma_df = MomaTreat.ArtistTreat()
-    print(moma_df.read)
+    moma_df = MomaTreat.ArtistTreat().read()
+    print(moma_df)
 
 #     probamos similitud entre nombres
 
