@@ -1,22 +1,14 @@
 from data_treatment import MomaTreat
+from data_treatment import TateModernTreat
+from data_treatment import RijksmuseumTreat
 from utils.Treatment import GetInfoArtObjects
 import pandas as pd
+import matplotlib
+from utils.Treatment import lev_dist, get_similarity
 
 if __name__ == '__main__':
-    moma_df = MomaTreat.ArtistTreat().read()
-    print(moma_df)
+    pd.options.display.max_rows = None
+    pd.options.display.max_columns = None
 
-#     probamos similitud entre nombres
-
-# a = "Da Vinci, Leonardo"
-# b = "Leonardo da Vinci"
-# c = "Leonardo Di Caprio"
-# d = "L & L AIR CONDITIONING"
-# e = "L & L AIR CONDITIONING Service"
-#
-#
-# # Levenshtein distance
-# print(a == b)
-#
-# print(lev_dist(d, e))
-# print(get_similarity(d, d))
+    df_raw = RijksmuseumTreat.BronzeToSilver()
+    df_raw.bronze_to_silver()

@@ -1,12 +1,14 @@
+import json
 import pandas as pd
+from pathlib import Path
 
 
 class ArtistTreat:
     def __init__(self):
-        self.path = "sources/moma_collection/artists.csv"
+        self.path = Path("sources/tate_collection/the-tate-collection.csv")
 
     def read(self):
-        return pd.read_csv(self.path, sep=",")
+        return pd.read_csv(self.path, sep=";")
 
     def lost_data(self):
         df = self.read()
