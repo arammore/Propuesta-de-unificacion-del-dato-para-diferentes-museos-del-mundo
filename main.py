@@ -10,5 +10,9 @@ if __name__ == '__main__':
     pd.options.display.max_rows = None
     pd.options.display.max_columns = None
 
-    df_raw = RijksmuseumTreat.BronzeToSilver()
-    df_raw.bronze_to_silver()
+    # df_raw = RijksmuseumTreat.BronzeToSilver()
+    # df_raw.bronze_to_silver()
+    #
+
+    df_moma = MomaTreat.ArtworksTreat()
+    df_moma.bronze_to_silver()

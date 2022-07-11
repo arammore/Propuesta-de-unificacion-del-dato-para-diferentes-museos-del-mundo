@@ -16,10 +16,11 @@ class BronzeToSilver:
         df_input = self.reader()
         cols = ['title', 'principalOrFirstMaker', 'longTitle']
 
-        df_output = pd.DataFrame(columns=['title', 'principalOrFirstMaker', 'longTitle'])
+        df_output = pd.DataFrame(columns=cols)
 
         for row in df_input['artObjects']:
-            df_output = df_output.append(dict(zip(cols, (row[x] for x in cols))), ignore_index=True)
+            df_output = df_output.append(dict(zip(cols, (row[x] for x in cols))),
+                                         ignore_index=True)
 
         self.silver_path.parent.mkdir(parents=True, exist_ok=True)
         df_output.to_csv(self.silver_path, sep=";", index=False)
