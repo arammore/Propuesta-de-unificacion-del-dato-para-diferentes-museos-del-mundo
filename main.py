@@ -14,5 +14,5 @@ if __name__ == '__main__':
     # df_raw.bronze_to_silver()
     #
 
-    df_moma = MomaTreat.ArtworksTreat()
-    df_moma.bronze_to_silver()
+    df_tate = TateModernTreat.TateTreat()
+    df_tate.bronze_to_silver()

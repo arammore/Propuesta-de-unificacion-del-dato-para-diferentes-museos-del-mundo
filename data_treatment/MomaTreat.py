@@ -5,7 +5,7 @@ from pathlib import Path
 class ArtistTreat:
     def __init__(self):
         self.bronze_path = Path("datalake/bronze/moma_collection/artists.csv")
-        self.silver_path = Path("datalake/silver/moma_collection/artists_moma.csv")
+        self.silver_path = Path("datalake/silver/moma_collection/moma_artists.csv")
 
     def read(self):
         return pd.read_csv(self.bronze_path, sep=",", encoding='utf-8')
@@ -34,10 +34,10 @@ class ArtistTreat:
 class ArtworksTreat:
     def __init__(self):
         self.bronze_path = Path("datalake/bronze/moma_collection/artworks.csv")
-        self.silver_path = Path("datalake/silver/moma_collection/artworks_moma.csv")
+        self.silver_path = Path("datalake/silver/moma_collection/moma_artworks.csv")
 
     def read(self):
-        return pd.read_csv(self.bronze_path, sep=",")
+        return pd.read_csv(self.bronze_path, sep=",", encoding='utf-8')
 
     def lost_data(self):
         df = self.read()
