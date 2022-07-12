@@ -108,6 +108,8 @@ def merge_catalogue(df_silver, artist_col_silver):
     list_of_artists_catalogue = df_catalogue[artist_col_catalogue].to_numpy().tolist()
     list_of_unique_artists_silver = df_silver[artist_col_silver].unique().tolist()
 
+
+
     # new dataframe
     cols = [artist_col_silver, 'ArtistaCatálogo']
 

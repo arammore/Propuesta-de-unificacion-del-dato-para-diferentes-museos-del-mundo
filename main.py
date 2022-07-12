@@ -2,6 +2,8 @@ from data_treatment import ArtistsCatalogueTreat
 from data_treatment import MomaTreat
 from data_treatment import TateModernTreat
 from data_treatment import RijksmuseumTreat
+from data_treatment import FinalEnrichment
+
 from utils.Treatment import GetInfoArtObjects
 import pandas as pd
 import matplotlib
@@ -36,7 +38,6 @@ if __name__ == '__main__':
     print("Catálogo de TATE de Silver a Gold")
     tate.silver_to_gold()
 
-
     # RIJKS
     rijks = RijksmuseumTreat.RijksmuseumTreat()
     print("Catálogo de RIJKSMUSEUM de Bronze a Silver")
@@ -44,4 +45,7 @@ if __name__ == '__main__':
     print("Catálogo de RIJKSMUSEUM de Silver a Gold")
     rijks.silver_to_gold()
 
-
+    # Unificación de los tres datasets y enriquecimiento final con el Catálogo de Artistas
+    print("Unificación de los tres datasets y enriquecimiento final con el Catálogo de Artistas")
+    final = FinalEnrichment.FinalEnrichment()
+    final.generate_final_data()
