@@ -1,5 +1,6 @@
 import pandas as pd
 from pathlib import Path
+from utils import Treatment
 
 bronze_path = "datalake/bronze/moma_collection"
 silver_path = "datalake/silver/moma_collection"
@@ -12,7 +13,8 @@ class ArtistTreat:
         self.silver_path = Path(silver_path + "/moma_artists.csv")
 
     def read(self):
-        return pd.read_csv(self.bronze_path, sep=",", encoding='utf-8')
+        return pd.read_csv(self.bronze_path, sep=",", encoding='utf-8',
+                           dtype={'Birth Year': 'Int64', 'Death Year': 'Int64'})
 
     def lost_data(self):
         df = self.read()
@@ -66,7 +68,7 @@ class SilverToGold:
         self.gold_path = Path(gold_path + "/MomaGold.csv")
         self.renamed_dict = {"Title": "TituloObra",
                              "Date": "Fecha",
-                             "Name": "Nombre",
+                             "Name": "Artista",
                              "Nationality": "Nacionalidad",
                              "Gender": "Género",
                              "Birth Year": "AñoNacimiento",
@@ -79,8 +81,14 @@ class SilverToGold:
                              "Classification": "Clasificación"
                              }
 
+        self.output_cols = ['TituloObra', 'Fecha', 'Artista', 'ArtistaCatálogo', 'Nacionalidad', 'Género',
+                            'AñoNacimiento', 'AñoMuerte',
+                            'Técnica', 'Dimensiones', 'FechaAdquisicion', 'Catálogo', 'Departamento', 'Clasificación',
+                            'Museo']
+
     def silver_to_gold(self):
-        moma_artists = pd.read_csv(self.silver_path_artists, sep=";")
+        moma_artists = pd.read_csv(self.silver_path_artists, sep=";",
+                                   dtype={'Birth Year': 'Int64', 'Death Year': 'Int64'})
         moma_artworks = pd.read_csv(self.silver_path_artworks, sep=";")
 
         regex = "^\d+$"
@@ -93,9 +101,9 @@ class SilverToGold:
         del df_output["Artist ID"]
 
         df_output.rename(columns=self.renamed_dict, inplace=True)
-        df_output["Museo"] = "Moma"
+        df_output["Museo"] = "MOMA"
 
-        # Renombrado de columnas
+        df_final = Treatment.merge_catalogue(df_silver=df_output, artist_col_silver="Artista")
 
         self.gold_path.parent.mkdir(parents=True, exist_ok=True)
-        df_output.to_csv(self.gold_path, sep=";", index=False)
+        df_final[self.output_cols].to_csv(self.gold_path, sep=";", index=False)
