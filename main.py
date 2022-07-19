@@ -4,10 +4,7 @@ from data_treatment import TateModernTreat
 from data_treatment import RijksmuseumTreat
 from data_treatment import FinalEnrichment
 
-from utils.Treatment import GetInfoArtObjects
 import pandas as pd
-import matplotlib
-from utils.Treatment import lev_dist, get_similarity
 
 if __name__ == '__main__':
     pd.options.display.max_rows = None
@@ -49,3 +46,5 @@ if __name__ == '__main__':
     print("Unificación de los tres datasets y enriquecimiento final con el Catálogo de Artistas")
     final = FinalEnrichment.FinalEnrichment()
     final.generate_final_data()
+
+    print("Fin del proceso")
