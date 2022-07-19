@@ -47,5 +47,4 @@ if __name__ == '__main__':
     final = FinalEnrichment.FinalEnrichment()
     final.generate_final_data()
 
-
     print("Fin del proceso")
